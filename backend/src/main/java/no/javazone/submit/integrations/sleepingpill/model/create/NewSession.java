@@ -44,7 +44,7 @@ public class NewSession {
         return new NewSession(
                 SessionStatus.DRAFT,
                 postedBy.toString(),
-                "New draft for your JavaZone talk",
+                "New draft for your CapraCon talk",
                 "",
                 "",
                 "presentation",

@@ -1,8 +1,10 @@
 # What is this?
 
-This is an application that lets speakers submit talks to JavaZone.
+Originally forked from the submission system used at [JavaZone](https://github.com/javaBin/submit)
 
-Integrates with [Sleepingpill](https://github.com/javaBin/sleepingPillCore) which stores the talks.
+This is an application that lets speakers submit talks to CapraCon.
+
+Integrates with [Sleepingpill](https://github.com/capraconsukting/sleepingPillCore) which stores the talks.
 
 # Getting started
 
@@ -83,7 +85,7 @@ You need the vault password for this. Ask around to get access to it :)
 
 ## Create a new environment
 
-You could probably just use test/prod which exists. 
+You could probably just use test/prod which exists.
 
 If you need a new, do this and follow the instructions to get an environment up and running
 ```

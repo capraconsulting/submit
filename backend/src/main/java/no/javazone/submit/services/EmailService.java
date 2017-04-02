@@ -34,7 +34,7 @@ public class EmailService {
     }
 
     public void sendTokenToUser(EmailAddress emailAddress, Token token) {
-        send(emailAddress, emailConfiguration.subjectPrefix + "JavaZone submission login", generateTokenEmail(token));
+        send(emailAddress, emailConfiguration.subjectPrefix + "CapraCon submission login", generateTokenEmail(token));
     }
 
     public void notifySpeakerAboutStatusChangeToInReview(Submission submission) {
@@ -44,18 +44,21 @@ public class EmailService {
                 .filter(Objects::nonNull)
                 .forEach(emailAddress -> {
                     Token token = authenticationService.createTokenForEmail(emailAddress);
-                    send(emailAddress, emailConfiguration.subjectPrefix + "JavaZone submission marked for review: " + submission.title, generateReviewEmail(submission, token));
+                    send(emailAddress, emailConfiguration.subjectPrefix + "CapraCon submission marked for review: " + submission.title, generateReviewEmail(submission, token));
                 });
     }
 
     private void send(EmailAddress address, String subject, String emailBody) {
+        if (emailConfiguration.isLocalProfile()) {
+            return;
+        }
         try {
             Email email = new SimpleEmail();
             email.setHostName("smtp.googlemail.com");
             email.setSmtpPort(465);
             email.setAuthenticator(new DefaultAuthenticator(emailConfiguration.smtpUser, emailConfiguration.smtpPass));
             email.setSSLOnConnect(true);
-            email.setFrom("program@java.no", "JavaZone Program Committee");
+            email.setFrom("program@java.no", "CapraCon Program Committee");
             email.setSubject(subject);
             email.setMsg(emailBody);
             email.addTo(address.toString());
@@ -86,11 +89,11 @@ public class EmailService {
 
         StringBuilder b = new StringBuilder();
         b.append("Dear " + speakerNames + "\n\n");
-        b.append("Thank your for submitting your talk '" + submission.title + "' to JavaZone :)\n\n");
+        b.append("Thank your for submitting your talk '" + submission.title + "' to CapraCon :)\n\n");
         b.append("You just marked your talk as ready for review, meaning that the program committee will have a look at it at their earliest convenience. This year, we are trying to give speakers who send their talks in early some feedback. In case the program committee has any feedback for you, they will send it to you by email.\n\n");
         b.append("Feel free to edit your talk further at any time. Just use the same browser as before - the submission system will keep you logged in. Alternatively, you can use this link to log any browser into our submission system to keep working on your talk:\n");
         b.append(emailConfiguration.tokenLinkPrefix).append("/").append(token).append("\n\n");
-        b.append("Best regards,").append("\n").append("The JavaZone Program Committee");
+        b.append("Best regards,").append("\n").append("The CapraCon Program Committee");
         return b.toString();
     }
 }

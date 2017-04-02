@@ -54,10 +54,10 @@ viewSubmissions submissions =
             if List.length submissions.years == 0 then
                 text ""
             else
-                p [ class "intro-text" ] [ text "These are all JavaZone talks you have submitted or participated on. You can edit all talks from the currect year. All earlier talks are also available for your reference." ]
+                p [ class "intro-text" ] [ text "These are all CapraCon talks you have submitted or participated on. You can edit all talks from the currect year. All earlier talks are also available for your reference." ]
     in
         [ div [ class "flex-header" ]
-            [ h1 [ class "flex-header-element" ] [ text "Your JavaZone Talks" ]
+            [ h1 [ class "flex-header-element" ] [ text "Your CapraCon Talks" ]
             , div [ class "flex-header-element" ] [ button [ onClick SubmissionsCreateTalk, class "new-talk button-new" ] [ text "Create new draft" ] ]
             ]
         , introtext
@@ -74,7 +74,7 @@ viewEmpty =
     div [ class "no-talks" ]
         [ img [ src "assets/robot.png", class "welcome-robot" ] []
         , h2 [] [ text "Blank slate, baby!" ]
-        , p [] [ text "It looks like you don't have any talks submitted to JavaZone yet." ]
+        , p [] [ text "It looks like you don't have any talks submitted to CapraCon yet." ]
         , p [ class "last" ] [ text "Go ahead, create your first draft. You can keep working on it, and edit it again and again until you're happy. Then, you mark it for submission and off it goes. We'll strive to give you feedback if you submit in due time before the last date." ]
         ]
 

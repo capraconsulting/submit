@@ -107,7 +107,7 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:javabin/submit.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:capraconsulting/submit.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 

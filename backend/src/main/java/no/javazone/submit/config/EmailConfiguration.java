@@ -1,11 +1,18 @@
 package no.javazone.submit.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 @Component
 @ConfigurationProperties(prefix = "email")
 public class EmailConfiguration {
+    private Environment environment;
 
     public String smtpUser;
 
@@ -29,5 +36,15 @@ public class EmailConfiguration {
 
     public void setSubjectPrefix(String subjectPrefix) {
         this.subjectPrefix = subjectPrefix;
+    }
+
+    @Autowired
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
+    public boolean isLocalProfile() {
+        return Arrays.stream(environment.getActiveProfiles()).anyMatch(p -> p.equals("local"));
+
     }
 }

@@ -22,6 +22,18 @@ public class EmailConfiguration {
 
     public String subjectPrefix;
 
+    public String smtpHost;
+
+    public String senderEmail;
+
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
+
+    public void setSmtpHost(String smtpHost) {
+        this.smtpHost = smtpHost;
+    }
+
     public void setSmtpUser(String smtpUser) {
         this.smtpUser = smtpUser;
     }

@@ -22,11 +22,13 @@ version=${2}
 echo "> Assembling files"
 secret_properties_file="application-${env}.properties"
 
-ansible-vault decrypt "secretconfig/application-${env}.properties.encrypted" --output=${secret_properties_file}
-if [ ! -f ${secret_properties_file} ]; then
-    echo "Something went wrong with decrypting secret properties. File ${secret_properties_file} is missing. Can't deploy..."
-    exit 1
-fi
+# ansible-vault decrypt "secretconfig/application-${env}.properties.encrypted" --output=${secret_properties_file}
+
+cp secretconfig/${secret_properties_file} .
+# if [ ! -f ${secret_properties_file} ]; then
+#     echo "Something went wrong with decrypting secret properties. File ${secret_properties_file} is missing. Can't deploy..."
+#     exit 1
+# fi
 
 cp ~/.m2/repository/no/javazone/${app}/${version}/${app}-${version}.jar ./app.jar
 if [ $? -ne 0 ]; then
@@ -41,5 +43,5 @@ if [ $? -ne 0 ]; then
   echo "> Package failed!"
   exit 1
 fi
-rm -f app.jar ${secret_properties_file}
+# rm -f app.jar ${secret_properties_file}
 echo "> Done packaging app"
